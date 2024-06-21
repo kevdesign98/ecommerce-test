@@ -13,7 +13,13 @@ import { ProductsService } from '../services/products.service';
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
-  products: Products[] = []
+  products: Products[] = [];
 
-  ProductsService = inject(ProductsService);
+  productsService = inject(ProductsService);
+
+  constructor() {
+    this.productsService.getAllProducts().then((data: Products[]) => {
+      this.products = data;
+    });
+  }
 }
